@@ -28,3 +28,37 @@ export const CardContainer = styled.div`
     color: var(--dark-light);
   }
 `;
+export const Header = styled(Layout.Header)`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+`;
+
+export const HideMenu = styled.div`
+  margin-left: 25px;
+  > span {
+    padding: 10px;
+    cursor: pointer;
+  }
+`;
+
+export const Profile = styled.div`
+  margin-right: 16px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+
+  > div {
+    margin-left: 10px;
+    line-height: 16px;
+    > h1 {
+      color: var(--gray);
+      font-size: 14px;
+      margin: 0;
+    }
+    > h3 {
+      color: var(--gray);
+      font-size: 14px;
+    }
+  }
+`;

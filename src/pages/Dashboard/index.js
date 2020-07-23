@@ -1,10 +1,11 @@
 import React, { useState } from "react";
-import { Layout, Menu, Breadcrumb } from "antd";
+import {} from "antd";
+import { Layout, Menu, Breadcrumb, Avatar } from "antd";
 import {
-  UploadOutlined,
-  UserOutlined,
   VideoCameraOutlined,
   SettingOutlined,
+  UserOutlined,
+  MenuOutlined,
 } from "@ant-design/icons";
 import {
   Container,
@@ -12,49 +13,85 @@ import {
   CardContainer,
   ContainerMenu,
   Siderbar,
+  Profile,
+  Header,
+  HideMenu,
 } from "./styles";
 
 import Clients from "./Clients";
 import Edit from "./Clients/Edit";
 import Register from "./Clients/Register";
+import Home from "./Home";
 
-const { Header, Footer } = Layout;
+const { Footer } = Layout;
 const { SubMenu } = Menu;
 
-function Dashboard() {
+const Dashboard = () => {
   const [collapsed, setCollapsed] = useState(false);
+  const [dashContent, setDashContent] = useState("home");
 
-  const onCollapse = (collapsed) => {
-    setCollapsed(collapsed);
+  const content = (dashContent) => {
+    switch (dashContent) {
+      case "clients:1":
+        return <Clients />;
+      case "clients:2":
+        return <Edit />;
+      case "clients:3":
+        return <Register />;
+      default:
+        return <Home />;
+    }
   };
 
   return (
     <Container>
-      <Header className="layout-background" style={{ padding: 0 }} />
+      <Header className="layout-background" style={{ padding: 0 }}>
+        <HideMenu>
+          <MenuOutlined onClick={() => setCollapsed(!collapsed)} />
+        </HideMenu>
+        <Profile>
+          <Avatar icon={<UserOutlined />} />
+          <div>
+            <h1>Bem Vindo</h1>
+            <h3>Cleverson Fernandes</h3>
+          </div>
+        </Profile>
+      </Header>
       <Layout>
         <Siderbar
+          collapsed={collapsed}
           breakpoint="lg"
-          collapsedWidth="0"
           onBreakpoint={(broken) => {
-            console.log(broken);
-          }}
-          onCollapse={(collapsed, type) => {
-            console.log(collapsed, type);
+            setCollapsed(broken);
           }}
         >
-          <ContainerMenu mode="inline" defaultSelectedKeys={["4"]}>
-            <Menu.Item key="2" icon={<VideoCameraOutlined />}>
+          <ContainerMenu mode="inline" defaultSelectedKeys={["home"]}>
+            <Menu.Item
+              key="home"
+              onClick={({ key }) => setDashContent(key)}
+              icon={<VideoCameraOutlined />}
+            >
               Inicio
             </Menu.Item>
             <SubMenu icon={<SettingOutlined />} title="Clientes">
               <Menu.Item
-                key="setting:1"
-                onClick={({ item }) => console.log(item)}
+                key="clients:1"
+                onClick={({ key }) => setDashContent(key)}
               >
                 Ver Todos
               </Menu.Item>
-              <Menu.Item key="setting:2">Editar</Menu.Item>
-              <Menu.Item key="setting:3">Cadastrar</Menu.Item>
+              <Menu.Item
+                key="clients:2"
+                onClick={({ key }) => setDashContent(key)}
+              >
+                Editar
+              </Menu.Item>
+              <Menu.Item
+                key="clients:3"
+                onClick={({ key }) => setDashContent(key)}
+              >
+                Cadastrar
+              </Menu.Item>
             </SubMenu>
           </ContainerMenu>
         </Siderbar>
@@ -64,17 +101,14 @@ function Dashboard() {
               <Breadcrumb.Item>Clientes</Breadcrumb.Item>
               <Breadcrumb.Item>Cadastrar</Breadcrumb.Item>
             </Breadcrumb>
-            <CardContainer>
-              <h1>Todos clientes cadastrados no sistema</h1>
-              <Clients />
-            </CardContainer>
+            <CardContainer>{dashContent && content(dashContent)}</CardContainer>
             <Footer className="text_center">
-              Ant Design ©2020 Created by Cleverson Fernandes
+              Ant Design ©2020 Criado por Cleverson Fernandes
             </Footer>
           </Content>
         </Layout>
       </Layout>
     </Container>
   );
-}
+};
 export default Dashboard;

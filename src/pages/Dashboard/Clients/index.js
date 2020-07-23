@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { Table, Button, Space } from "antd";
+import React from "react";
+import { Table } from "antd";
 function Clients() {
   const columns = [
     {
@@ -60,6 +60,11 @@ function Clients() {
   function onChange(pagination, filters, sorter, extra) {
     console.log(pagination);
   }
-  return <Table columns={columns} dataSource={data} onChange={onChange} />;
+  return (
+    <React.Fragment>
+      <h1>Todos clientes cadastrados no sistema</h1>
+      <Table columns={columns} dataSource={data} onChange={onChange} />
+    </React.Fragment>
+  );
 }
 export default Clients;
