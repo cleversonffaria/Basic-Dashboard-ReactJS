@@ -6,6 +6,8 @@ import store from "../store";
 import Routes from "../routes.js";
 import GlobalStyle from "./styles";
 
+import "antd/dist/antd.css";
+
 function App() {
   return (
     <Provider store={store}>

@@ -5,7 +5,7 @@ export const Container = styled.div`
 `;
 export const TextInput = styled.input`
   border: none;
-  border-bottom: 2px solid #9283fc;
+  border-bottom: 2px solid var(--primary-light);
   padding: 10px;
   background: none;
   width: 250px;
@@ -21,5 +21,5 @@ export const TextInput = styled.input`
 export const Message = styled.div`
   margin-top: 5px;
   font-size: 12px;
-  color: #fc2512;
+  color: var(--error);
 `;

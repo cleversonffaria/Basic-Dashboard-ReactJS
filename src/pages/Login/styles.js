@@ -2,8 +2,8 @@ import styled from "styled-components";
 import { Link } from "react-router-dom";
 
 export const Container = styled.div`
-  background-color: #fff;
-  background-image: linear-gradient(to top, #6454f0, #6ee2f5);
+  background-color: var(--white);
+  background-image: linear-gradient(to top, var(--primary), var(--secondary));
   min-height: 100vh;
   min-width: 100vw;
 
@@ -12,12 +12,12 @@ export const Container = styled.div`
   justify-content: center;
 
   @media (max-width: 480px) {
-    background: #fff;
+    background: var(--white);
   }
 `;
 
 export const Card = styled.div`
-  background-color: #fff;
+  background-color: var(--white);
   border-radius: 5px;
 
   width: 400px;
@@ -30,11 +30,15 @@ export const Card = styled.div`
 `;
 
 export const Button = styled.button`
-  background-color: #333;
-  background-image: linear-gradient(to left, #6454f0, #9283fc);
+  background-color: var(--dark-light);
+  background-image: linear-gradient(
+    to left,
+    var(--primary),
+    var(--primary-light)
+  );
 
   border-radius: 5px;
-  color: #fff;
+  color: var(--white);
   font-weight: bold;
 
   width: 100%;
@@ -49,7 +53,7 @@ export const Button = styled.button`
 export const Title = styled.h2`
   font-size: 32px;
   font-weight: bold;
-  color: #6454f0;
+  color: var(--primary);
 
   margin-bottom: 30px;
 `;
@@ -57,7 +61,7 @@ export const Title = styled.h2`
 export const LabelInput = styled.span`
   font-size: 14px;
   font-weight: bold;
-  color: #9283fc;
+  color: var(--primary-light);
 `;
 export const ContainerInput = styled.div`
   margin-bottom: 23px;
@@ -66,7 +70,7 @@ export const ContainerInput = styled.div`
 export const RecoverPassword = styled(Link)`
   float: right;
   text-decoration: none;
-  color: #6454f0;
+  color: var(--primary);
   margin-top: 10px;
   font-size: 14px;
 `;
@@ -74,7 +78,7 @@ export const RecoverPassword = styled(Link)`
 export const SubTitle = styled.p`
   margin-bottom: 10px;
   font-size: 14px;
-  color: #333;
+  color: var(--dark-light);
   width: 250px;
   @media (max-width: 480px) {
     width: 80vw;
