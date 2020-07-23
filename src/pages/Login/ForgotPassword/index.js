@@ -8,14 +8,14 @@ import {
   Button,
   LabelInput,
   ContainerInput,
-  Title,
+  SubTitle,
   RecoverPassword,
-} from "./styles";
+} from "../styles";
 
-import validateInput from "../../util/validateInput";
+import validateInput from "../../../util/validateInput";
 // import { Creators as AuthActions } from "../../store/ducks/auth";
 
-import Input from "../../components/Form/input";
+import Input from "../../../components/Form/input";
 
 function Login() {
   //#region Hooks and States
@@ -37,24 +37,18 @@ function Login() {
   return (
     <Container>
       <Card>
-        <Title>Login Painel</Title>
+        <SubTitle>
+          Esqueceu a senha? <br />
+          Digite seu email abaixo para recupera-la!
+        </SubTitle>
         <Form ref={formRef} onSubmit={handleSubmit}>
           <ContainerInput>
             <LabelInput>Usuário</LabelInput>
             <Input name="email" placeholder="Digite seu email" />
           </ContainerInput>
 
-          <ContainerInput>
-            <LabelInput>Senha</LabelInput>
-            <Input
-              type="password"
-              name="password"
-              placeholder="Digite sua senha"
-            />
-          </ContainerInput>
-
-          <Button type="submit">Entrar</Button>
-          <RecoverPassword to="/forgot">Esqueci a senha</RecoverPassword>
+          <Button type="submit">Recuperar</Button>
+          <RecoverPassword to="/">Lembrei a senha</RecoverPassword>
         </Form>
       </Card>
     </Container>

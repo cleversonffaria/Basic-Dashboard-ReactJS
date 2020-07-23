@@ -1,3 +1,25 @@
 import styled from "styled-components";
 
-export const TextInput = styled.input``;
+export const Container = styled.div`
+  height: 45px;
+`;
+export const TextInput = styled.input`
+  border: none;
+  border-bottom: 2px solid #9283fc;
+  padding: 10px;
+  background: none;
+  width: 250px;
+  :focus {
+    outline: none;
+  }
+
+  @media (max-width: 480px) {
+    width: 80vw;
+  }
+`;
+
+export const Message = styled.div`
+  margin-top: 5px;
+  font-size: 12px;
+  color: #fc2512;
+`;

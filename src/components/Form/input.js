@@ -1,12 +1,12 @@
 import React, { useEffect, useRef } from "react";
 import { useField } from "@unform/core";
 
-import { TextInput } from "./styles";
+import { TextInput, Message, Container } from "./styles";
 
 export default function Input({ name, ...rest }) {
   //#region Hooks and States
   const inputRef = useRef(null);
-  const { fieldName, registerField, defaultValue, error } = useField(name);
+  const { fieldName, registerField, error } = useField(name);
   //#endregion
   //#region Functions and ComponentdidMount
   useEffect(() => {
@@ -19,9 +19,9 @@ export default function Input({ name, ...rest }) {
   //#endregion
 
   return (
-    <div>
+    <Container>
       <TextInput ref={inputRef} {...rest} />
-      {error && <span style={{ color: "red" }}>{error}</span>}
-    </div>
+      {error && <Message>{error}</Message>}
+    </Container>
   );
 }
