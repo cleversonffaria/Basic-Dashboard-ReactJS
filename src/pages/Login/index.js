@@ -1,6 +1,8 @@
 import React, { useRef, useEffect, useState } from "react";
 import { message } from "antd";
-// import { useSelector, useDispatch } from "react-redux";
+import { useDispatch } from "react-redux";
+import jwt_decode from "jwt-decode";
+
 import { Form } from "@unform/web";
 //#region Imports Local
 import api from "../../services/api";
@@ -17,24 +19,33 @@ import {
 } from "./styles";
 //#endregion
 import { validateInputLogin } from "../../util/validate";
-// import { Creators as AuthActions } from "../../store/ducks/auth";
+import { Creators as Actions } from "../../store/ducks/user";
 
 import Input from "../../components/Input";
 
 function Login(props) {
   //#region Hooks and States
-  const [error, setError] = useState(null);
   const formRef = useRef(null);
+  const dispatch = useDispatch();
   //#endregion
 
   //#region Function
+
+  async function recoverUser(token) {
+    const user = jwt_decode(token);
+    const response = await api.get(`users/${user.sub}`);
+    dispatch(Actions.toggleUser(response.data.name));
+  }
+
   const handleSignIn = async (value, { reset }) => {
     try {
       formRef.current.setErrors({});
       validateInputLogin(value); //Verifica se o email e password não esta vazio e se o email e válido
 
       const response = await api.post("/login", value);
-      login(response.data.token);
+      login(response.data.accessToken);
+      recoverUser(response.data.accessToken);
+
       props.history.push("/dashboard/home");
       reset(); // Reseta dados dos campos
     } catch (err) {

@@ -1,6 +1,12 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { Layout, Menu, Breadcrumb, Avatar } from "antd";
-import { HomeOutlined, UserOutlined, MenuOutlined } from "@ant-design/icons";
+import { useSelector } from "react-redux";
+import {
+  HomeOutlined,
+  UserOutlined,
+  MenuOutlined,
+  LogoutOutlined,
+} from "@ant-design/icons";
 
 //#region  Imports Local
 import {
@@ -18,7 +24,7 @@ import Clients from "./Clients";
 import Register from "./Clients/Register";
 import Home from "./Home";
 
-import api from "../../services/api";
+import { logout } from "../../services/auth";
 //#endregion
 
 const { Footer } = Layout;
@@ -26,7 +32,7 @@ const { SubMenu } = Menu;
 
 const Dashboard = ({ match, ...props }) => {
   const [collapsed, setCollapsed] = useState(false);
-
+  const user = useSelector((state) => state.user);
   //#region Functions
   const breadcrumb = (id) => {
     switch (id) {
@@ -59,14 +65,6 @@ const Dashboard = ({ match, ...props }) => {
         return <Home />;
     }
   };
-  //#endregion
-  useEffect(() => {
-    async function getUser() {
-      const response = await api.get("user/1");
-      console.log(response);
-    }
-    getUser();
-  }, []);
   return (
     <Container>
       <Header className="layout-background" style={{ padding: 0 }}>
@@ -77,7 +75,7 @@ const Dashboard = ({ match, ...props }) => {
           <Avatar icon={<UserOutlined />} />
           <div>
             <h1>Bem Vindo</h1>
-            <h3>Cleverson Fernandes</h3>
+            <h3>{user.username}</h3>
           </div>
         </Profile>
       </Header>
@@ -110,6 +108,15 @@ const Dashboard = ({ match, ...props }) => {
                 Cadastrar
               </Menu.Item>
             </SubMenu>
+            <Menu.Item
+              onClick={() => {
+                logout();
+                props.history.push("/");
+              }}
+              icon={<LogoutOutlined />}
+            >
+              Sair
+            </Menu.Item>
           </ContainerMenu>
         </Siderbar>
         <Layout>

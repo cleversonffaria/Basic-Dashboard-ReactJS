@@ -1,7 +1,9 @@
 import React from "react";
 
 import { Provider } from "react-redux";
-import store from "../store";
+
+import { PersistGate } from "redux-persist/integration/react";
+import { store, persistor } from "../store";
 
 import Routes from "../routes.js";
 import GlobalStyle from "./styles";
@@ -12,7 +14,9 @@ function App() {
   return (
     <Provider store={store}>
       <GlobalStyle />
-      <Routes />
+      <PersistGate loading={null} persistor={persistor}>
+        <Routes />
+      </PersistGate>
     </Provider>
   );
 }
