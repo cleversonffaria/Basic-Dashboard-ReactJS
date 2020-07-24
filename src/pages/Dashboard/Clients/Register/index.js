@@ -39,8 +39,8 @@ const Register = () => {
       const tel = unMask(valueInput.tel);
       const data = {
         ...valueInput,
-        ["cpf"]: cpf,
-        ["tel"]: tel,
+        cpf: cpf,
+        tel: tel,
       };
 
       message.success("Sucesso");

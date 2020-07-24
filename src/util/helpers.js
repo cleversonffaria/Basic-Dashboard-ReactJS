@@ -5,28 +5,19 @@ function validateEmail(email) {
   return re.test(email);
 }
 function validateTel(tel) {
-  var re = /\(\d{2}\)\s\d{4,5}\-\d{4}/;
-
+  var re = /\(\d{2}\)\s\d{4,5}-\d{4}/;
   return re.test(tel);
 }
 
 function masked(name, value) {
-  var maskedValue = value;
   switch (name) {
     case "cpf":
-      var maskedValue = mask(unMask(value), ["999.999.999-99"]);
-      break;
+      return mask(unMask(value), ["999.999.999-99"]);
     case "tel":
-      var maskedValue = mask(unMask(value), [
-        "(99) 9999-9999",
-        "(99) 99999-9999",
-      ]);
-      break;
+      return mask(unMask(value), ["(99) 9999-9999", "(99) 99999-9999"]);
     default:
-      var maskedValue = value;
-      break;
+      return value;
   }
-  return maskedValue;
 }
 
 export { validateEmail, validateTel, masked };

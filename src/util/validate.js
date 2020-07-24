@@ -23,23 +23,29 @@ function validateInputLogin(data) {
 
 function validateInputClients(data) {
   if (data.name === "") {
-    throw "O nome do cliente é obrigatório";
+    const message = "O nome do cliente é obrigatório";
+    throw message;
   }
 
   if (data.mail === "") {
-    throw "O email é obrigatório";
+    const message = "O email é obrigatório";
+    throw message;
   } else if (!validateEmail(data.mail)) {
-    throw "Email inválido";
+    const message = "Email inválido";
+    throw message;
   }
 
   if (data.tel === "") {
-    throw "O número do telefone é obrigatório";
+    const message = "O número do telefone é obrigatório";
+    throw message;
   } else if (!validateTel(data.tel)) {
-    throw "Número do telefone está inválido";
+    const message = "Número do telefone está inválido";
+    throw message;
   }
 
   if (data.city === "") {
-    throw "Nome da cidade é obrigatório";
+    const message = "Nome da cidade é obrigatório";
+    throw message;
   }
 }
 
