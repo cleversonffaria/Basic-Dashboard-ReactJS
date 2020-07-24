@@ -21,21 +21,21 @@ import Home from "./Home";
 const { Footer } = Layout;
 const { SubMenu } = Menu;
 
-const Dashboard = () => {
+const Dashboard = ({ match, ...props }) => {
   const [collapsed, setCollapsed] = useState(false);
   const [dashContent, setDashContent] = useState("home");
 
   //#region Functions
-  const breadcrumb = (dashContent) => {
-    switch (dashContent) {
-      case "clients:1":
+  const breadcrumb = (id) => {
+    switch (id) {
+      case "clients":
         return (
           <>
             <Breadcrumb.Item>Clientes</Breadcrumb.Item>
             <Breadcrumb.Item>Ver Todos</Breadcrumb.Item>
           </>
         );
-      case "clients:2":
+      case "register":
         return (
           <>
             <Breadcrumb.Item>Clientes</Breadcrumb.Item>
@@ -47,11 +47,11 @@ const Dashboard = () => {
     }
   };
 
-  const content = (dashContent) => {
-    switch (dashContent) {
-      case "clients:1":
+  const content = (id) => {
+    switch (id) {
+      case "clients":
         return <Clients />;
-      case "clients:2":
+      case "register":
         return <Register />;
       default:
         return <Home />;
@@ -85,22 +85,19 @@ const Dashboard = () => {
         >
           <ContainerMenu mode="inline" defaultSelectedKeys={["home"]}>
             <Menu.Item
-              key="home"
-              onClick={({ key }) => setDashContent(key)}
+              onClick={() => props.history.push("/dashboard/home")}
               icon={<HomeOutlined />}
             >
               Inicio
             </Menu.Item>
             <SubMenu icon={<UserOutlined />} title="Clientes">
               <Menu.Item
-                key="clients:1"
-                onClick={({ key }) => setDashContent(key)}
+                onClick={() => props.history.push("/dashboard/clients")}
               >
                 Ver Todos
               </Menu.Item>
               <Menu.Item
-                key="clients:2"
-                onClick={({ key }) => setDashContent(key)}
+                onClick={() => props.history.push("/dashboard/register")}
               >
                 Cadastrar
               </Menu.Item>
@@ -110,10 +107,10 @@ const Dashboard = () => {
         <Layout>
           <Content>
             <Breadcrumb className="margin_right_left">
-              {breadcrumb(dashContent)}
+              {breadcrumb(match.params.id)}
             </Breadcrumb>
 
-            <CardContainer>{dashContent && content(dashContent)}</CardContainer>
+            <CardContainer>{content(match.params.id)}</CardContainer>
 
             <Footer className="text_center">
               Ant Design ©2020 Criado por Cleverson Fernandes

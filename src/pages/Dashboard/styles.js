@@ -18,7 +18,6 @@ export const ContainerMenu = styled(Menu)`
 
 export const CardContainer = styled.div`
   background: var(--white);
-  min-height: 360px;
   padding: 24px;
   overflow-y: hidden;
   > h1 {
