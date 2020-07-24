@@ -24,8 +24,7 @@ export const CardContainer = styled.div`
   > h1 {
     text-align: center;
     font-size: 1.2em;
-    font-weight: bold;
-    color: var(--dark-light);
+    color: var(--gray);
   }
 `;
 export const Header = styled(Layout.Header)`
@@ -54,10 +53,12 @@ export const Profile = styled.div`
     > h1 {
       color: var(--gray);
       font-size: 14px;
+      font-weight: 400;
       margin: 0;
     }
     > h3 {
       color: var(--gray);
+      font-weight: 400;
       font-size: 14px;
     }
   }

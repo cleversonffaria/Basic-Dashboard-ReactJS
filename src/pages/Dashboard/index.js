@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import {} from "antd";
 import { Layout, Menu, Breadcrumb, Avatar } from "antd";
 import {
   VideoCameraOutlined,
@@ -7,6 +6,7 @@ import {
   UserOutlined,
   MenuOutlined,
 } from "@ant-design/icons";
+//#region  Imports Local
 import {
   Container,
   Content,
@@ -22,6 +22,7 @@ import Clients from "./Clients";
 import Edit from "./Clients/Edit";
 import Register from "./Clients/Register";
 import Home from "./Home";
+//#endregion
 
 const { Footer } = Layout;
 const { SubMenu } = Menu;
@@ -30,18 +31,39 @@ const Dashboard = () => {
   const [collapsed, setCollapsed] = useState(false);
   const [dashContent, setDashContent] = useState("home");
 
+  //#region Functions
+  const breadcrumb = (dashContent) => {
+    switch (dashContent) {
+      case "clients:1":
+        return (
+          <>
+            <Breadcrumb.Item>Clientes</Breadcrumb.Item>
+            <Breadcrumb.Item>Ver Todos</Breadcrumb.Item>
+          </>
+        );
+      case "clients:2":
+        return (
+          <>
+            <Breadcrumb.Item>Clientes</Breadcrumb.Item>
+            <Breadcrumb.Item>Cadastrar</Breadcrumb.Item>
+          </>
+        );
+      default:
+        return <Breadcrumb.Item>Inicio</Breadcrumb.Item>;
+    }
+  };
+
   const content = (dashContent) => {
     switch (dashContent) {
       case "clients:1":
         return <Clients />;
       case "clients:2":
-        return <Edit />;
-      case "clients:3":
         return <Register />;
       default:
         return <Home />;
     }
   };
+  //#endregion
 
   return (
     <Container>
@@ -84,12 +106,6 @@ const Dashboard = () => {
                 key="clients:2"
                 onClick={({ key }) => setDashContent(key)}
               >
-                Editar
-              </Menu.Item>
-              <Menu.Item
-                key="clients:3"
-                onClick={({ key }) => setDashContent(key)}
-              >
                 Cadastrar
               </Menu.Item>
             </SubMenu>
@@ -98,10 +114,11 @@ const Dashboard = () => {
         <Layout>
           <Content>
             <Breadcrumb className="margin_right_left">
-              <Breadcrumb.Item>Clientes</Breadcrumb.Item>
-              <Breadcrumb.Item>Cadastrar</Breadcrumb.Item>
+              {breadcrumb(dashContent)}
             </Breadcrumb>
+
             <CardContainer>{dashContent && content(dashContent)}</CardContainer>
+
             <Footer className="text_center">
               Ant Design ©2020 Criado por Cleverson Fernandes
             </Footer>

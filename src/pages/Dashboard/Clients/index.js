@@ -57,9 +57,12 @@ function Clients() {
     },
   ];
 
+  //#region Functions
   function onChange(pagination, filters, sorter, extra) {
     console.log(pagination);
   }
+  //#endregion
+
   return (
     <React.Fragment>
       <h1>Todos clientes cadastrados no sistema</h1>
