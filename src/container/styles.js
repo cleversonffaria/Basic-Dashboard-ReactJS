@@ -37,8 +37,16 @@ const GlobalStyle = createGlobalStyle`
   .margin_right_left{
     margin: 16px 0;
   }
+  .margin_right{
+    margin-right:10px
+  }
   .layout-background{
     background:var(--white)
   }
+  .editable-row .ant-form-item-explain {
+  position: absolute;
+  top: 100%;
+  font-size: 12px;
+}
 `;
 export default GlobalStyle;

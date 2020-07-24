@@ -13,10 +13,10 @@ import {
   RecoverPassword,
 } from "./styles";
 //#endregion
-import validateInput from "../../util/validateInput";
+import { validateInputLogin } from "../../util/validate";
 // import { Creators as AuthActions } from "../../store/ducks/auth";
 
-import Input from "../../components/Form/input";
+import Input from "../../components/Input";
 
 function Login() {
   //#region Hooks and States
@@ -27,7 +27,7 @@ function Login() {
   const handleSubmit = (data, { reset }) => {
     try {
       formRef.current.setErrors({});
-      validateInput(data);
+      validateInputLogin(data);
       reset();
     } catch (error) {
       formRef.current.setFieldError(error.type, error.message);

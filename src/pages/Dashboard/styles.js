@@ -20,7 +20,7 @@ export const CardContainer = styled.div`
   background: var(--white);
   min-height: 360px;
   padding: 24px;
-
+  overflow-y: hidden;
   > h1 {
     text-align: center;
     font-size: 1.2em;

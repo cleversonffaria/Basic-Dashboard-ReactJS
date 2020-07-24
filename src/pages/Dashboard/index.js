@@ -1,11 +1,6 @@
 import React, { useState } from "react";
 import { Layout, Menu, Breadcrumb, Avatar } from "antd";
-import {
-  VideoCameraOutlined,
-  SettingOutlined,
-  UserOutlined,
-  MenuOutlined,
-} from "@ant-design/icons";
+import { HomeOutlined, UserOutlined, MenuOutlined } from "@ant-design/icons";
 //#region  Imports Local
 import {
   Container,
@@ -19,7 +14,6 @@ import {
 } from "./styles";
 
 import Clients from "./Clients";
-import Edit from "./Clients/Edit";
 import Register from "./Clients/Register";
 import Home from "./Home";
 //#endregion
@@ -82,7 +76,9 @@ const Dashboard = () => {
       <Layout>
         <Siderbar
           collapsed={collapsed}
-          breakpoint="lg"
+          breakpoint="sm"
+          trigger={null}
+          collapsedWidth={0}
           onBreakpoint={(broken) => {
             setCollapsed(broken);
           }}
@@ -91,11 +87,11 @@ const Dashboard = () => {
             <Menu.Item
               key="home"
               onClick={({ key }) => setDashContent(key)}
-              icon={<VideoCameraOutlined />}
+              icon={<HomeOutlined />}
             >
               Inicio
             </Menu.Item>
-            <SubMenu icon={<SettingOutlined />} title="Clientes">
+            <SubMenu icon={<UserOutlined />} title="Clientes">
               <Menu.Item
                 key="clients:1"
                 onClick={({ key }) => setDashContent(key)}
