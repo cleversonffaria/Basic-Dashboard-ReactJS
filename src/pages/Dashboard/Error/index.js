@@ -10,7 +10,7 @@ export default function Error() {
       <h1>404</h1>
       <h3>Não encontramos a página solicitada </h3>
       <p>
-        <Return to="dashboard/home">Clique aqui</Return> voltar ao início
+        <Return to="/dashboard/home">Clique aqui</Return> voltar ao início
       </p>
     </Container>
   );

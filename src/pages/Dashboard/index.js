@@ -23,7 +23,6 @@ const { SubMenu } = Menu;
 
 const Dashboard = ({ match, ...props }) => {
   const [collapsed, setCollapsed] = useState(false);
-  const [dashContent, setDashContent] = useState("home");
 
   //#region Functions
   const breadcrumb = (id) => {
@@ -76,7 +75,7 @@ const Dashboard = ({ match, ...props }) => {
       <Layout>
         <Siderbar
           collapsed={collapsed}
-          breakpoint="sm"
+          breakpoint="md"
           trigger={null}
           collapsedWidth={0}
           onBreakpoint={(broken) => {

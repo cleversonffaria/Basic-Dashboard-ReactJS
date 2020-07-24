@@ -1,0 +1,30 @@
+{
+  "user": [
+    {
+      "name": "Carlos Oliveira",
+      "email": "carlosoliveira@painel.com",
+      "password": "admin"
+    },
+    {
+      "name": "Administrador",
+      "email": "admin@painel.com",
+      "password": "admin"
+    }
+  ],
+  "clients": [
+    {
+      "name": "Cleverson Fernandes",
+      "cpf": "12344422299",
+      "tel": "22997349644",
+      "mail": "cleversonffaria@gmail.com",
+      "city": "Bom Jesus do Norte"
+    },
+    {
+      "name": "Cliente 2",
+      "cpf": "12365422299",
+      "tel": "2297349644",
+      "mail": "cliente@hotmail.com",
+      "city": "Itaperuna"
+    }
+  ]
+}

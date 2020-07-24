@@ -22,7 +22,6 @@ const Clients = () => {
   const [valueInput, setValueInput] = useState("");
 
   const InputChange = (event) => {
-    console.log(event.target.value);
     setValueInput(event.target.value);
   };
 
