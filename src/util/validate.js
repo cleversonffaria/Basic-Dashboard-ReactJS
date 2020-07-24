@@ -3,20 +3,20 @@ import { validateEmail, validateTel } from "./helpers";
 function validateInputLogin(data) {
   const user = {
     type: "",
-    message: "",
+    messageErr: "",
   };
   if (data.email === "") {
     user.type = "email";
-    user.message = "O email é obrigatório";
+    user.messageErr = "O email é obrigatório";
     throw user;
   } else if (!validateEmail(data.email)) {
     user.type = "email";
-    user.message = "Email inválido";
+    user.messageErr = "Email inválido";
     throw user;
   }
   if (data.password === "") {
     user.type = "password";
-    user.message = "Senha não inserida";
+    user.messageErr = "Senha não inserida";
     throw user;
   }
 }

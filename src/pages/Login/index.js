@@ -1,8 +1,11 @@
-import React, { useRef } from "react";
-
+import React, { useRef, useEffect, useState } from "react";
+import { message } from "antd";
 // import { useSelector, useDispatch } from "react-redux";
 import { Form } from "@unform/web";
 //#region Imports Local
+import api from "../../services/api";
+import { login } from "../../services/auth";
+
 import {
   Container,
   Card,
@@ -18,28 +21,34 @@ import { validateInputLogin } from "../../util/validate";
 
 import Input from "../../components/Input";
 
-function Login() {
+function Login(props) {
   //#region Hooks and States
+  const [error, setError] = useState(null);
   const formRef = useRef(null);
   //#endregion
 
   //#region Function
-  const handleSubmit = (data, { reset }) => {
+  const handleSignIn = async (value, { reset }) => {
     try {
       formRef.current.setErrors({});
-      validateInputLogin(data);
-      reset();
-    } catch (error) {
-      formRef.current.setFieldError(error.type, error.message);
+      validateInputLogin(value); //Verifica se o email e password não esta vazio e se o email e válido
+
+      const response = await api.post("/login", value);
+      login(response.data.token);
+      props.history.push("/dashboard/home");
+      reset(); // Reseta dados dos campos
+    } catch (err) {
+      formRef.current.setFieldError(err.type, err.messageErr);
+      (!err.messageErr && message.error("Ocorreu algum erro ao logar!")) ||
+        message.error(err.messageErr);
     }
   };
   //#endregion
-
   return (
     <Container>
       <Card>
         <Title>Login Painel</Title>
-        <Form ref={formRef} onSubmit={handleSubmit}>
+        <Form ref={formRef} onSubmit={handleSignIn}>
           <ContainerInput>
             <LabelInput>Usuário</LabelInput>
             <Input name="email" placeholder="Digite seu email" />

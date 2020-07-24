@@ -1,18 +1,21 @@
 {
-  "user": [
+  "users": [
     {
+      "id": 1,
       "name": "Carlos Oliveira",
       "email": "carlosoliveira@painel.com",
-      "password": "admin"
+      "password": "$2a$10$IOP7Nf1PYD/NMBtUszTE8.XNL7CONB9KC1DdU/Sbxp9fK8HxRKTtG"
     },
     {
+      "id": 2,
       "name": "Administrador",
       "email": "admin@painel.com",
-      "password": "admin"
+      "password": "$2a$10$IOP7Nf1PYD/NMBtUszTE8.XNL7CONB9KC1DdU/Sbxp9fK8HxRKTtG"
     }
   ],
   "clients": [
     {
+      "id": 1,
       "name": "Cleverson Fernandes",
       "cpf": "12344422299",
       "tel": "22997349644",
@@ -20,6 +23,7 @@
       "city": "Bom Jesus do Norte"
     },
     {
+      "id": 2,
       "name": "Cliente 2",
       "cpf": "12365422299",
       "tel": "2297349644",

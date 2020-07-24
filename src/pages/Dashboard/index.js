@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Layout, Menu, Breadcrumb, Avatar } from "antd";
 import { HomeOutlined, UserOutlined, MenuOutlined } from "@ant-design/icons";
+
 //#region  Imports Local
 import {
   Container,
@@ -16,6 +17,8 @@ import {
 import Clients from "./Clients";
 import Register from "./Clients/Register";
 import Home from "./Home";
+
+import api from "../../services/api";
 //#endregion
 
 const { Footer } = Layout;
@@ -57,7 +60,13 @@ const Dashboard = ({ match, ...props }) => {
     }
   };
   //#endregion
-
+  useEffect(() => {
+    async function getUser() {
+      const response = await api.get("user/1");
+      console.log(response);
+    }
+    getUser();
+  }, []);
   return (
     <Container>
       <Header className="layout-background" style={{ padding: 0 }}>
