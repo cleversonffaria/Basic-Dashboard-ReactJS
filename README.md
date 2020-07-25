@@ -57,3 +57,7 @@ Senha : admin
 ## Dashboard Edição
 
 ![Edição](https://user-images.githubusercontent.com/34727083/88447576-0447d500-ce0b-11ea-992f-e3c9ca914213.PNG)
+
+## Tela de Error 404
+
+![Error](https://user-images.githubusercontent.com/34727083/88447654-f9417480-ce0b-11ea-957b-8bc864fbcb4b.PNG)
