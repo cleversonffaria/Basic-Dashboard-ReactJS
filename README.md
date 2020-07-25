@@ -1,68 +1,59 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Para iniciar o App.
 
-## Available Scripts
+No diretório do projeto, você pode executar:
 
-In the project directory, you can run:
+### `yarn`
+
+### ou
+
+### `npm install`
+
+Em seguida poderá ser executado o comandos:
 
 ### `yarn start`
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+### ou
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+### `npm start`
 
-### `yarn test`
+Esses comandos executa o aplicativo no modo de desenvolvimento.<br />
+Abra [http://localhost:3000](http://localhost:3000) para visualizá-lo no navegador.<br />
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Para iniciar a API ( local ).
 
-### `yarn build`
+No diretório do projeto, você precisa executar:
 
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### `yarn api`
 
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
+ou
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### `npm api`
 
-### `yarn eject`
+Esses comandos executa a api local.<br />
+Abra [http://localhost:3333/clients](http://localhost:3333/clients) para visualizar todos clientes cadastrados<br />
+Para vizualizar todos usuários cadastrados acesse [http://localhost:3333/users](http://localhost:3333/users).<br/>
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+### Para acessar o painel entre com o usuário.
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+Login : admin@painel.com
+Senha : admin
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+## Tela de login
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+![login](https://user-images.githubusercontent.com/34727083/88447513-897eba00-ce0a-11ea-94fe-5237eb474051.PNG)
 
-## Learn More
+## Dashboard Home
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+![painel](https://user-images.githubusercontent.com/34727083/88447571-00b44e00-ce0b-11ea-9d20-61b50adc397d.PNG)
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+## Dashboard Lista de Clientes
 
-### Code Splitting
+![clients](https://user-images.githubusercontent.com/34727083/88447575-0316a800-ce0b-11ea-9369-056782ae0dc5.PNG)
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
+## Dashboard Cadastro
 
-### Analyzing the Bundle Size
+![cadastro](https://user-images.githubusercontent.com/34727083/88447572-01e57b00-ce0b-11ea-9a4a-edeab12f71da.PNG)
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
+## Dashboard Edição
 
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `yarn build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+![Edição](https://user-images.githubusercontent.com/34727083/88447576-0447d500-ce0b-11ea-992f-e3c9ca914213.PNG)
