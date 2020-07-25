@@ -26,7 +26,7 @@ const Register = (props) => {
     mail: "",
     city: "",
   };
-  console.log(client);
+  
   const [valueInput, setValueInput] = useState(
     (client && client) || initialValue
   );
