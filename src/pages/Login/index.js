@@ -33,8 +33,8 @@ function Login(props) {
 
   async function recoverUser(token) {
     const user = jwt_decode(token);
-    const response = await api.get(`users/${user.sub}`);
-    dispatch(Actions.toggleUser(response.data.name));
+    // const response = await api.get(`users/${user.sub}`);
+    dispatch(Actions.toggleUser("response.data.name"));
   }
 
   const handleSignIn = async (value, { reset }) => {
@@ -75,7 +75,6 @@ function Login(props) {
           </ContainerInput>
 
           <Button type="submit">Entrar</Button>
-          <RecoverPassword to="/forgot">Esqueci a senha</RecoverPassword>
         </Form>
       </Card>
     </Container>
