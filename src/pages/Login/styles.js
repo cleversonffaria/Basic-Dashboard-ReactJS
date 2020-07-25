@@ -1,5 +1,4 @@
 import styled from "styled-components";
-import { Link } from "react-router-dom";
 
 export const Container = styled.div`
   background-color: var(--white);
@@ -67,14 +66,6 @@ export const LabelInput = styled.span`
 `;
 export const ContainerInput = styled.div`
   margin-bottom: 23px;
-`;
-
-export const RecoverPassword = styled(Link)`
-  float: right;
-  text-decoration: none;
-  color: var(--primary);
-  margin-top: 10px;
-  font-size: 14px;
 `;
 
 export const SubTitle = styled.p`

@@ -15,7 +15,6 @@ import {
   LabelInput,
   ContainerInput,
   Title,
-  RecoverPassword,
 } from "./styles";
 //#endregion
 import { validateInputLogin } from "../../util/validate";
@@ -33,8 +32,8 @@ function Login(props) {
 
   async function recoverUser(token) {
     const user = jwt_decode(token);
-    // const response = await api.get(`users/${user.sub}`);
-    dispatch(Actions.toggleUser("response.data.name"));
+    const response = await api.get(`users/${user.sub}`);
+    dispatch(Actions.toggleUser(response.data.name));
   }
 
   const handleSignIn = async (value, { reset }) => {
