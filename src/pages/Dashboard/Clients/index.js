@@ -1,20 +1,16 @@
 import React, { useState, useEffect } from "react";
-import { Table, Input, InputNumber, Popconfirm, Form, message } from "antd";
-import { masked } from "../../../util/helpers";
+import { Link } from "react-router-dom";
+import { Table, Form } from "antd";
+import { useDispatch } from "react-redux";
 
+import { Creators as Actions } from "../../../store/ducks/clients";
+import { masked } from "../../../util/helpers";
 import api from "../../../services/api";
 
 const Clients = () => {
   const [form] = Form.useForm();
   const [data, setData] = useState([]);
-  const [editingKey, setEditingKey] = useState("");
-  const [valueInput, setValueInput] = useState({
-    name: "",
-    cpf: "",
-    tel: "",
-    mail: "",
-    city: "",
-  });
+  const dispatch = useDispatch();
 
   //#region Inicia todos dados dos clientes
   useEffect(() => {
@@ -36,75 +32,6 @@ const Clients = () => {
   }, []);
   //#endregion
 
-  const InputChange = (event) => {
-    const { name, value } = event.target;
-
-    setValueInput({ ...valueInput, [name]: masked(name, value) });
-  };
-
-  const EditableCell = ({
-    editing,
-    dataIndex,
-    title,
-    inputType,
-    record,
-    index,
-    children,
-    ...restProps
-  }) => {
-    const inputNode =
-      inputType === "number" ? (
-        <InputNumber />
-      ) : (
-        <Input onChange={(event) => InputChange(event)} />
-      );
-
-    return (
-      <td {...restProps}>
-        {editing ? (
-          <Input onChange={(event) => InputChange(event)} />
-        ) : (
-          children
-        )}
-      </td>
-    );
-  };
-
-  const isEditing = (record) => record.key === editingKey;
-
-  const edit = (record) => {
-    form.setFieldsValue({ name: "", cpf: "", tel: "", mail: "", ...record });
-    setEditingKey(record.key);
-  };
-
-  const cancel = () => {
-    setEditingKey("");
-  };
-
-  const save = async (key) => {
-    try {
-      const row = await form.validateFields();
-
-      const newData = [...data];
-      const index = newData.findIndex((item) => key === item.key);
-      if (index > -1) {
-        const item = newData[index];
-        newData.splice(index, 1, {
-          ...item,
-          ...row,
-        });
-        setData(newData);
-        setEditingKey("");
-      } else {
-        newData.push(row);
-        setData(newData);
-        setEditingKey("");
-      }
-    } catch (errInfo) {
-      message.error("Existe algum campo sem preencher");
-    }
-  };
-  //#endregion
   const columns = [
     {
       title: "Nome",
@@ -137,66 +64,21 @@ const Clients = () => {
     },
     {
       title: "",
-      dataIndex: "operation",
-      render: (_, record) => {
-        const editable = isEditing(record);
-        return editable ? (
-          <span>
-            <a
-              href="#save"
-              onClick={() => save(record.key)}
-              style={{ marginRight: 8 }}
-            >
-              Salvar
-            </a>
-            <Popconfirm title="Deseja cancelar?" onConfirm={cancel}>
-              <a href="#cancel">Cancelar</a>
-            </Popconfirm>
-          </span>
-        ) : (
-          <a
-            href="#edit"
-            disabled={editingKey !== ""}
-            onClick={() => edit(record)}
-          >
-            Editar
-          </a>
-        );
-      },
+      dataIndex: "",
+      render: (value) => (
+        <Link
+          to="/dashboard/edit"
+          onClick={() => dispatch(Actions.toggleClients(value))}
+        >
+          Editar
+        </Link>
+      ),
     },
   ];
 
-  const mergedColumns = columns.map((col) => {
-    if (!col.editable) {
-      return col;
-    }
-    return {
-      ...col,
-      onCell: (record) => ({
-        record,
-        dataIndex: col.dataIndex,
-        title: col.title,
-        editing: isEditing(record),
-      }),
-    };
-  });
-  console.log(valueInput);
   return (
     <Form form={form} component={false}>
-      <Table
-        components={{
-          body: {
-            cell: EditableCell,
-          },
-        }}
-        bordered
-        dataSource={data}
-        columns={mergedColumns}
-        rowClassName="editable-row"
-        pagination={{
-          onChange: cancel,
-        }}
-      />
+      <Table bordered dataSource={data} columns={columns} />
     </Form>
   );
 };

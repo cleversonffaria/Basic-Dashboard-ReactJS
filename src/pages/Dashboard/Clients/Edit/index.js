@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Form, Row, Col, Button, message } from "antd";
 import { unMask } from "remask";
-
+import { useSelector } from "react-redux";
 import {
   UserOutlined,
   IdcardOutlined,
@@ -19,13 +19,18 @@ import { InputForm } from "../styles";
 const Register = (props) => {
   const [form] = Form.useForm();
 
-  const [valueInput, setValueInput] = useState({
+  const client = useSelector((state) => state.clients.data);
+  const initialValue = {
     name: "",
     cpf: "",
     tel: "",
     mail: "",
     city: "",
-  });
+  };
+
+  const [valueInput, setValueInput] = useState(
+    (client && client) || initialValue
+  );
 
   const InputChange = (event) => {
     const { name, value } = event.target;
@@ -43,10 +48,9 @@ const Register = (props) => {
         cpf: cpf,
         tel: tel,
       };
+      await api.put(`clients/${data.id}`, data);
 
-      await api.post("clients", data);
-
-      message.success("Cliente cadastrado com sucesso!");
+      message.success("Cliente editado com sucesso!");
 
       setTimeout(function () {
         props.history.push("/dashboard/clients");
@@ -139,7 +143,7 @@ const Register = (props) => {
       <Row justify="center">
         <Col md={8} style={{ textAlign: "center" }}>
           <Button type="primary" htmlType="submit">
-            Cadastrar
+            Confirmar
           </Button>
         </Col>
       </Row>

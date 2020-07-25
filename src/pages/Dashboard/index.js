@@ -22,6 +22,7 @@ import {
 
 import Clients from "./Clients";
 import Register from "./Clients/Register";
+import Edit from "./Clients/Edit";
 import Home from "./Home";
 
 import { logout } from "../../services/auth";
@@ -50,6 +51,13 @@ const Dashboard = ({ match, ...props }) => {
             <Breadcrumb.Item>Cadastrar</Breadcrumb.Item>
           </>
         );
+      case "edit":
+        return (
+          <>
+            <Breadcrumb.Item>Clientes</Breadcrumb.Item>
+            <Breadcrumb.Item>Editar</Breadcrumb.Item>
+          </>
+        );
       default:
         return <Breadcrumb.Item>Inicio</Breadcrumb.Item>;
     }
@@ -59,6 +67,8 @@ const Dashboard = ({ match, ...props }) => {
     switch (id) {
       case "clients":
         return <Clients {...props} />;
+      case "edit":
+        return <Edit {...props} />;
       case "register":
         return <Register {...props} />;
       default:
@@ -106,6 +116,9 @@ const Dashboard = ({ match, ...props }) => {
                 onClick={() => props.history.push("/dashboard/register")}
               >
                 Cadastrar
+              </Menu.Item>
+              <Menu.Item onClick={() => props.history.push("/dashboard/edit")}>
+                Editar
               </Menu.Item>
             </SubMenu>
             <Menu.Item
