@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Form, Row, Col, Button, message } from "antd";
+import { Form, Row, Col, message } from "antd";
 import { unMask } from "remask";
 import { useSelector } from "react-redux";
 import {
@@ -11,14 +11,13 @@ import {
 } from "@ant-design/icons";
 
 import api from "../../../../services/api";
-
+import { Button } from "../styles";
 import { masked } from "../../../../util/helpers";
 import { validateInputClients } from "../../../../util/validate";
 import { InputForm } from "../styles";
 
 const Register = (props) => {
   const [form] = Form.useForm();
-
   const client = useSelector((state) => state.clients.data);
   const initialValue = {
     name: "",
@@ -27,7 +26,7 @@ const Register = (props) => {
     mail: "",
     city: "",
   };
-
+  console.log(client);
   const [valueInput, setValueInput] = useState(
     (client && client) || initialValue
   );

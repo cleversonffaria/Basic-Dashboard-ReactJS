@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Form, Row, Col, Button, message } from "antd";
+import { Form, Row, Col, message } from "antd";
 import { unMask } from "remask";
 
 import {
@@ -11,7 +11,7 @@ import {
 } from "@ant-design/icons";
 
 import api from "../../../../services/api";
-
+import { Button } from "../styles";
 import { masked } from "../../../../util/helpers";
 import { validateInputClients } from "../../../../util/validate";
 import { InputForm } from "../styles";
@@ -138,9 +138,7 @@ const Register = (props) => {
       <Row>{getFields()}</Row>
       <Row justify="center">
         <Col md={8} style={{ textAlign: "center" }}>
-          <Button type="primary" htmlType="submit">
-            Cadastrar
-          </Button>
+          <Button>Cadastrar</Button>
         </Col>
       </Row>
     </Form>

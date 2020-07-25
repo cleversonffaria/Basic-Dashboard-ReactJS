@@ -16,101 +16,12 @@
   "clients": [
     {
       "id": 1,
-      "name": "asd",
-      "cpf": "12344422299",
-      "tel": "22997349644",
-      "mail": "cleversonffaria@gmail.com",
-      "city": "Bom Jesus do Norte",
-      "key": 1
-    },
-    {
-      "id": 2,
-      "name": "Cliente 3",
-      "cpf": "12365422299",
-      "tel": "2297345555",
-      "mail": "cliente@hotmail.com",
+      "name": "Cliente",
+      "cpf": "99999999999",
+      "tel": "22999999999",
+      "mail": "clienteexemplo@exemplo.com",
       "city": "Itaperuna",
-      "key": 2
-    },
-    {
-      "name": "Cleverson Fernandes de Faria",
-      "cpf": "12312312312",
-      "tel": "22997349644",
-      "mail": "cleversonffaria@gmail.com",
-      "city": "Bom Jesus do Norte",
-      "id": 3
-    },
-    {
-      "name": "Cleverson Fernandes de Faria",
-      "cpf": "12312312312",
-      "tel": "22997349644",
-      "mail": "cleversonffaria@gmail.com",
-      "city": "Bom Jesus do Norte",
-      "id": 4
-    },
-    {
-      "name": "Cleverson Fernandes de Faria",
-      "cpf": "",
-      "tel": "22997349644",
-      "mail": "cleversonffaria@gmail.com",
-      "city": "Bom Jesus do Norte",
-      "id": 5
-    },
-    {
-      "name": "Cleverson Feaariasdasdasd",
-      "cpf": "12312311232",
-      "tel": "22997349644",
-      "mail": "cleversonffaria@gmail.com",
-      "city": "Bom Jesus do Norte",
-      "id": 6
-    },
-    {
-      "name": "Cleverson Fernandes de Faria",
-      "cpf": "12312312312",
-      "tel": "22997349644",
-      "mail": "cleversonffaria@gmail.com",
-      "city": "Bom Jesus do Norte",
-      "id": 7
-    },
-    {
-      "name": "Cleverson Fernandes de Faria",
-      "cpf": "",
-      "tel": "22997349644",
-      "mail": "cleversonffaria@gmail.com",
-      "city": "Bom Jesus do Norte",
-      "id": 8
-    },
-    {
-      "name": "qweqweqweq",
-      "cpf": "123123123",
-      "tel": "22997349644",
-      "mail": "cleversonffaria@gmail.com",
-      "city": "Bom Jesus do Norte",
-      "id": 9
-    },
-    {
-      "name": "Cleverson Fernandes de Faria",
-      "cpf": "6465454645",
-      "tel": "22997349644",
-      "mail": "cleversonffaria@gmail.com",
-      "city": "Bom Jesus do Norte",
-      "id": 10
-    },
-    {
-      "name": "marcos paulo",
-      "cpf": "12312635",
-      "tel": "22974487555",
-      "mail": "cleversonffaria@gmail.com",
-      "city": "Bom Jesus do Norte",
-      "id": 11
-    },
-    {
-      "name": "Cleverson Fernandes de Faria",
-      "cpf": "",
-      "tel": "22997349644",
-      "mail": "cleversonffaria@gmail.com",
-      "city": "Bom Jesus do Norte",
-      "id": 12
+      "key": 1
     }
   ]
 }
