@@ -9,22 +9,22 @@ import {
   HomeOutlined,
 } from "@ant-design/icons";
 
+import api from "../../../../services/api";
+
 import { masked } from "../../../../util/helpers";
 import { validateInputClients } from "../../../../util/validate";
 import { InputForm } from "../styles";
 
-const initialValue = {
-  name: "",
-  cpf: "",
-  tel: "",
-  mail: "",
-  city: "",
-};
-
-const Register = () => {
+const Register = (props) => {
   const [form] = Form.useForm();
 
-  const [valueInput, setValueInput] = useState(initialValue);
+  const [valueInput, setValueInput] = useState({
+    name: "",
+    cpf: "",
+    tel: "",
+    mail: "",
+    city: "",
+  });
 
   const InputChange = (event) => {
     const { name, value } = event.target;
@@ -32,7 +32,7 @@ const Register = () => {
     setValueInput({ ...valueInput, [name]: masked(name, value) });
   };
 
-  const onFinish = () => {
+  const onFinish = async (props) => {
     try {
       validateInputClients(valueInput);
       const cpf = unMask(valueInput.cpf);
@@ -43,7 +43,13 @@ const Register = () => {
         tel: tel,
       };
 
-      message.success("Sucesso");
+      await api.post("clients", data);
+
+      message.success("Cliente cadastrado com sucesso!");
+
+      setTimeout(function () {
+        props.history.push("/dashboard/clients");
+      }, 2000);
     } catch (error) {
       message.warning(error);
     }
@@ -126,7 +132,7 @@ const Register = () => {
   };
 
   return (
-    <Form form={form} name="advanced_search" onFinish={onFinish}>
+    <Form form={form} name="advanced_search" onFinish={() => onFinish(props)}>
       <Row>{getFields()}</Row>
       <Row justify="center">
         <Col md={8} style={{ textAlign: "center" }}>

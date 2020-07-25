@@ -58,11 +58,11 @@ const Dashboard = ({ match, ...props }) => {
   const content = (id) => {
     switch (id) {
       case "clients":
-        return <Clients />;
+        return <Clients {...props} />;
       case "register":
-        return <Register />;
+        return <Register {...props} />;
       default:
-        return <Home />;
+        return <Home {...props} />;
     }
   };
   return (

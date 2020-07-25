@@ -1,28 +1,45 @@
-import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import React, { useState, useEffect } from "react";
 import { Table, Input, InputNumber, Popconfirm, Form, message } from "antd";
+import { masked } from "../../../util/helpers";
 
-const originData = [];
-
-for (let i = 0; i < 100; i++) {
-  originData.push({
-    key: i.toString(),
-    name: `Edrward ${i}`,
-    cpf: 12355950233,
-    tell: 22997349644,
-    mail: "cleversonffaria@gmail.com",
-    city: `Cidade. ${i}`,
-  });
-}
+import api from "../../../services/api";
 
 const Clients = () => {
   const [form] = Form.useForm();
-  const [data, setData] = useState(originData);
+  const [data, setData] = useState([]);
   const [editingKey, setEditingKey] = useState("");
-  const [valueInput, setValueInput] = useState("");
+  const [valueInput, setValueInput] = useState({
+    name: "",
+    cpf: "",
+    tel: "",
+    mail: "",
+    city: "",
+  });
+
+  //#region Inicia todos dados dos clientes
+  useEffect(() => {
+    async function getClients() {
+      const response = await api.get("clients");
+      if (response.data) {
+        const itens = response.data.map((item) => {
+          return {
+            ...item,
+            cpf: masked("cpf", item.cpf),
+            tel: masked("tel", item.tel),
+            key: item.id,
+          };
+        });
+        setData(itens);
+      }
+    }
+    getClients();
+  }, []);
+  //#endregion
 
   const InputChange = (event) => {
-    setValueInput(event.target.value);
+    const { name, value } = event.target;
+
+    setValueInput({ ...valueInput, [name]: masked(name, value) });
   };
 
   const EditableCell = ({
@@ -45,18 +62,7 @@ const Clients = () => {
     return (
       <td {...restProps}>
         {editing ? (
-          <Form.Item
-            name={dataIndex}
-            style={{ margin: 0 }}
-            rules={[
-              {
-                required: true,
-                message: `Por favor insira ${title}!`,
-              },
-            ]}
-          >
-            {inputNode}
-          </Form.Item>
+          <Input onChange={(event) => InputChange(event)} />
         ) : (
           children
         )}
@@ -67,7 +73,7 @@ const Clients = () => {
   const isEditing = (record) => record.key === editingKey;
 
   const edit = (record) => {
-    form.setFieldsValue({ name: "", cpf: "", tell: "", mail: "", ...record });
+    form.setFieldsValue({ name: "", cpf: "", tel: "", mail: "", ...record });
     setEditingKey(record.key);
   };
 
@@ -114,7 +120,7 @@ const Clients = () => {
     },
     {
       title: "Telefone",
-      dataIndex: "tell",
+      dataIndex: "tel",
       editable: true,
     },
     {
@@ -136,17 +142,25 @@ const Clients = () => {
         const editable = isEditing(record);
         return editable ? (
           <span>
-            <Link onClick={() => save(record.key)} style={{ marginRight: 8 }}>
+            <a
+              href="#save"
+              onClick={() => save(record.key)}
+              style={{ marginRight: 8 }}
+            >
               Salvar
-            </Link>
+            </a>
             <Popconfirm title="Deseja cancelar?" onConfirm={cancel}>
-              <Link>Cancelar</Link>
+              <a href="#cancel">Cancelar</a>
             </Popconfirm>
           </span>
         ) : (
-          <Link disabled={editingKey !== ""} onClick={() => edit(record)}>
+          <a
+            href="#edit"
+            disabled={editingKey !== ""}
+            onClick={() => edit(record)}
+          >
             Editar
-          </Link>
+          </a>
         );
       },
     },
@@ -166,6 +180,7 @@ const Clients = () => {
       }),
     };
   });
+  console.log(valueInput);
   return (
     <Form form={form} component={false}>
       <Table
